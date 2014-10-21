@@ -1,16 +1,16 @@
 package MyApp::Rifle;
 use strict;
-use Moose;
-
+use Moo;
+use Types::Standard qw(:all);
 use DateTime;
 
 use Data::Dumper;
 
-has 'rounds' => ( is => 'rw', isa => 'Int', default => 0 );
+has 'rounds' => ( is => 'rw', isa => Int, default => sub{0} );
 
 has 'fired_dt' => ( 
 	is => 'rw', 
-	isa => 'DateTime',
+	isa => InstanceOf['DateTime'],
 	handles => {
 		last_fired => 'datetime'
 	}

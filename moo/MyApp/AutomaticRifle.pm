@@ -1,12 +1,13 @@
 package MyApp::AutomaticRifle;
 use strict;
-use Moose;
+use Moo;
+use Types::Standard qw(:all);
 extends 'MyApp::Rifle';
 with 'MyApp::FireAll';
 with 'MyApp::MightJam';
 
-has '+rounds' => ( default => 50 );
-has 'last_burst_num' => ( is => 'rw', isa => 'Int' );
+has '+rounds' => ( default => sub{50} );
+has 'last_burst_num' => ( is => 'rw', isa => Int );
 
 sub burst_fire {
 	my ($self, $num) = @_;

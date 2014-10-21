@@ -1,20 +1,21 @@
 package MyApp::MightJam;
 use strict;
-use Moose::Role;
-use Moose::Util::TypeConstraints;
+use Moo::Role;
+use Type::Tiny;
+use Scalar::Util qw(looks_like_number);
 
 requires 'fire';
 
-subtype 'Probability' => (
-	as 'Num',
-	where { $_ >= 0 && $_ <= 1 },
-	message { "$_ is not a number between 0 and 1" }
+my $Probability = Type::Tiny->new(
+	name       => 'Probability',
+	constraint => sub { looks_like_number($_) && $_ >= 0 && $_ <= 1 },
+	message    => sub { "$_ is not a number between 0 and 1" }
 );
 
 has 'jam_probability' => ( 
 	is => 'ro', 
-	isa => 'Probability', 
-	default => .01 
+	isa => $Probability, 
+	default => sub{.01} 
 );
 
 sub roll_dice {

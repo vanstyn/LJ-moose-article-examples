@@ -1,6 +1,6 @@
 package MyApp::FireAll;
 use strict;
-use Moose::Role;
+use Moo::Role;
 
 requires 'fire', 'rounds';
 
