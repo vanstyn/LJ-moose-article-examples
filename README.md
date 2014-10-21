@@ -1,4 +1,12 @@
 LJ-moose-article-examples
 =========================
 
-Code examples from Moose article (Linux Jounral 209, sept 2011)
+Code examples from Moose article (Linux Jounral Issue 209, published September, 2011)
+
+See also: http://www.linuxjournal.com/content/moose
+
+```bash
+perl -Iplain_perl  example.pl
+ 
+perl -Imoose       example.pl
+```
